@@ -44,10 +44,63 @@
         'name': 'entity.name.tag.todotxt.project'
       }
     }
-  }
+  },
   {
     'match': '^x\\s.*$'
     'name': 'comment.line.todotxt'
+  }
+  {
+    # Date 1
+    # Example:
+    #
+    # ```
+    # t:yyyy-mm-dd
+    # ```
+    'match': '(?<=\\s|[^0-9]|^)t(:)\\d{4}(-)\\d{2}(-)\\d{2}(?=\\s|[^0-9])'
+    'name': 'constant.language.date.todotxt'
+    'captures':
+      '1': 'name': 'punctuation.separator.colon.key-value.todotxt'
+      '2': 'name': 'punctuation.separator.dash.date.todotxt'
+      '3': 'name': 'punctuation.separator.dash.date.todotxt'
+  }
+  {
+    # Date 2
+    # Example:
+    #
+    # ```
+    # yyyy-mm-dd
+    # ```
+    'match': '(?<=\\s|[^0-9]|^)\\d{4}(-)\\d{2}(-)\\d{2}(?=\\s|[^0-9])'
+    'name': 'constant.language.date.todotxt'
+    'captures':
+      '1': 'name': 'punctuation.separator.dash.date.todotxt'
+      '2': 'name': 'punctuation.separator.dash.date.todotxt'
+  }
+  {
+    # Due to date
+    # Example:
+    #
+    # ```
+    # due:yyyy-mm-dd
+    # ```
+    'match': '(?<=\\s|[^0-9]|^)due(:)\\d{4}(-)\\d{2}(-)\\d{2}(?=\\s|[^0-9])'
+    'name': 'constant.language.due.todotxt'
+    'captures':
+      '1': 'name': 'punctuation.separator.colon.key-value.todotxt'
+      '2': 'name': 'punctuation.separator.dash.date.todotxt'
+      '3': 'name': 'punctuation.separator.dash.date.todotxt'
+  }
+  {
+    # Extension with quotes
+    # Example:
+    #
+    # ```
+    # bar 'goo bar':'foo bar'
+    # ```
+    'match': '(?<=^|[^-a-zA-Zа-яА-Я0-9ії])[-a-zA-Zа-яА-Я0-9ії]+?(:)\'.+?\'(?=\\S|\\s)'
+    'name': 'constant.language.extension.function.todotxt'
+    'captures':
+      '1': 'name': 'punctuation.separator.colon.key-value.todotxt'
   }
 ]
 'scopeName': 'text.todotxt'
